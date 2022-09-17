@@ -2,31 +2,41 @@
 <img src="docs/auditory.png" alt="yatas-logo" width="30%">
 <p align="center">
 
-# YATAS
-[![codecov](https://codecov.io/gh/StanGirard/yatas-template/branch/main/graph/badge.svg?token=OFGny8Za4x)](https://codecov.io/gh/StanGirard/YATAS) [![goreport](https://goreportcard.com/badge/github.com/stangirard/yatas-template)](https://goreportcard.com/badge/github.com/stangirard/yatas)
-
-Yet Another Testing &amp; Auditing Solution 
-
-The goal of YATAS is to help you create a secure AWS environment without too much hassle. It won't check for all best practices but only for the ones that are important for you based on my experience. Please feel free to tell me if you find something that is not covered.
-
-## Plugins implementation
-
-Simply use this repository as a template and implement your own plugin.
-
-Don't forget to change the name of the plugin in the `Makefile` and the `go.mod` file.
-
-
-Add you code in `main.go` and in the function `RunPlugin` 
+# YATAS Markdown
 ## Usage
 
-Implement your own plugin and build it with the `make build` command. 
+Generates a report in the current directory in `report.md`
 
+## Installation
 
-## How to tests ? 
+Add to your config file:
 
-Simply run `make install` and in your Yatas config instead of the version of the plugin use `local` and it will use the version you just installed.
+```yaml
+- name: "markdown"
+  enabled: true
+  type: "report"
+  source: "github.com/StanGirard/yatas-markdown"
+  version: "latest" # or a specific version
+  description: "Genereates a markdown report"
+```
 
-## How to deploy ?
+## Example Report
 
-You can use the provided workflow to run your plugin in a CI environment. 
-The plugin needs to have a binary that starts with `yatas-` and ends with the name of the plugin in the releases.
+| Id | Name | Status | 
+| ---- | ---- | ------ | 
+| AWS_ACM_001| ACM certificates are valid | ✅ | 
+| AWS_ACM_002| ACM certificate expires in more than 90 days | ✅ | 
+| AWS_ACM_003| ACM certificates are used | ✅ | 
+| AWS_APG_001| ApiGateways logs are sent to Cloudwatch | ✅ | 
+| AWS_APG_002| ApiGateways are protected by an ACL | ✅ | 
+| AWS_APG_003| ApiGateways have tracing enabled | ✅ | 
+| AWS_ASG_001| Autoscaling maximum capacity is below 80% | ✅ | 
+| AWS_ASG_002| Autoscaling group are in two availability zones | ✅ | 
+| AWS_BAK_001| EC2's Snapshots are encrypted | ❌ | 
+| AWS_BAK_002| EC2's snapshots are younger than a day old | ❌ | 
+| AWS_CFT_001| Cloudfronts enforce TLS 1.2 at least | ✅ | 
+| AWS_CFT_002| Cloudfronts only allow HTTPS or redirect to HTTPS | ✅ | 
+| AWS_CFT_003| Cloudfronts queries are logged | ✅ | 
+| AWS_CFT_004| Cloudfronts are logging Cookies | ✅ | 
+| AWS_CFT_005| Cloudfronts are protected by an ACL | ✅ | 
+| AWS_CLD_001| Cloudtrails are encrypted | ✅ | 

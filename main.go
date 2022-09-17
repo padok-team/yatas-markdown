@@ -2,10 +2,13 @@ package main
 
 import (
 	"encoding/gob"
+	"fmt"
+	"io/ioutil"
 	"os"
 
 	"github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-plugin"
+	"gopkg.in/yaml.v3"
 
 	"github.com/stangirard/yatas/plugins/commons"
 )
@@ -23,7 +26,7 @@ func (g *YatasPlugin) Run(c *commons.Config) []commons.Tests {
 	}
 	var checksAll []commons.Tests
 
-	checks, err := runPlugin(c, "template")
+	checks, err := runPlugin(c, "markdown")
 	if err != nil {
 		g.logger.Error("Error running plugins", "error", err)
 	}
@@ -56,7 +59,7 @@ func main() {
 	// pluginMap is the map of plugins we can dispense.
 	// Name of your plugin
 	var pluginMap = map[string]plugin.Plugin{
-		"template": &commons.YatasPlugin{Impl: yatasPlugin},
+		"markdown": &commons.YatasPlugin{Impl: yatasPlugin},
 	}
 
 	logger.Debug("message from plugin", "foo", "bar")
@@ -72,6 +75,21 @@ func runPlugin(c *commons.Config, plugin string) ([]commons.Tests, error) {
 	var checksAll []commons.Tests
 
 	// Run the checks here
+	tests := UnMarshalYAMLFromFrile()
+	WriteMarkdown(tests)
 
 	return checksAll, nil
+}
+
+func UnMarshalYAMLFromFrile() []commons.Tests {
+	var tests []commons.Tests
+	yamlFile, err := ioutil.ReadFile("results.yaml")
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+	err = yaml.Unmarshal(yamlFile, &tests)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+	return tests
 }
