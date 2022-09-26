@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/StanGirard/yatas-markdown/compare/v1.0.0...v1.1.0) (2022-09-26)
+
+
+### Features
+
+* **plugin:** upgraded to latest plugin interface ([30bf3f5](https://github.com/StanGirard/yatas-markdown/commit/30bf3f5d17c8f1399beed5c18b4c21bb09f6eab2))
+
 ## 1.0.0 (2022-09-17)
 
 
