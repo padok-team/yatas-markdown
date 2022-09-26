@@ -3,14 +3,13 @@ module github.com/stangirard/yatas-markdown
 go 1.19
 
 require (
-	github.com/hashicorp/go-hclog v1.3.0
+	github.com/hashicorp/go-hclog v1.3.1
 	github.com/hashicorp/go-plugin v1.4.5
-	github.com/stangirard/yatas v0.11.6
-	gopkg.in/yaml.v3 v3.0.1
+	github.com/stangirard/yatas v0.11.10
 )
 
 require (
-	github.com/aws/aws-sdk-go-v2 v1.16.15 // indirect
+	github.com/aws/aws-sdk-go-v2 v1.16.16 // indirect
 	github.com/aws/smithy-go v1.13.3 // indirect
 	github.com/fatih/color v1.13.0 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
@@ -31,4 +30,5 @@ require (
 	google.golang.org/genproto v0.0.0-20220916172020-2692e8806bfa // indirect
 	google.golang.org/grpc v1.49.0 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
 )

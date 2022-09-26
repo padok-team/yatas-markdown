@@ -2,13 +2,10 @@ package main
 
 import (
 	"encoding/gob"
-	"fmt"
-	"io/ioutil"
 	"os"
 
 	"github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-plugin"
-	"gopkg.in/yaml.v3"
 
 	"github.com/stangirard/yatas/plugins/commons"
 )
@@ -39,7 +36,7 @@ func (g *YatasPlugin) Run(c *commons.Config) []commons.Tests {
 // This prevents users from executing bad plugins or executing a plugin
 // directory. It is a UX feature, not a security feature.
 var handshakeConfig = plugin.HandshakeConfig{
-	ProtocolVersion:  2,
+	ProtocolVersion:  3,
 	MagicCookieKey:   "BASIC_PLUGIN",
 	MagicCookieValue: "hello",
 }
@@ -75,21 +72,7 @@ func runPlugin(c *commons.Config, plugin string) ([]commons.Tests, error) {
 	var checksAll []commons.Tests
 
 	// Run the checks here
-	tests := UnMarshalYAMLFromFrile()
-	WriteMarkdown(tests)
+	WriteMarkdown(c.Tests)
 
 	return checksAll, nil
-}
-
-func UnMarshalYAMLFromFrile() []commons.Tests {
-	var tests []commons.Tests
-	yamlFile, err := ioutil.ReadFile("results.yaml")
-	if err != nil {
-		fmt.Println(err.Error())
-	}
-	err = yaml.Unmarshal(yamlFile, &tests)
-	if err != nil {
-		fmt.Println(err.Error())
-	}
-	return tests
 }
