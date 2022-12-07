@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/hashicorp/go-hclog v1.3.1
-	github.com/hashicorp/go-plugin v1.4.7
+	github.com/hashicorp/go-plugin v1.4.8
 	github.com/stangirard/yatas v1.2.0
 )
 
