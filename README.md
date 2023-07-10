@@ -15,7 +15,7 @@ Add to your config file:
 - name: "markdown"
   enabled: true
   type: "report"
-  source: "github.com/StanGirard/yatas-markdown"
+  source: "github.com/padok-team/yatas-markdown"
   version: "latest" # or a specific version
   description: "Genereates a markdown report"
 ```
