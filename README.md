@@ -17,7 +17,7 @@ Add to your config file:
   type: "report"
   source: "github.com/padok-team/yatas-markdown"
   version: "latest" # or a specific version
-  description: "Genereates a markdown report"
+  description: "Generates a markdown report"
 ```
 
 ## Example Report
